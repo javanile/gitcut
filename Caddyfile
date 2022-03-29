@@ -4,7 +4,7 @@
 }
 
 localhost {
-    rewrite * /index.php?tag={path}
+    rewrite /a/ /index.php?a={path}
     reverse_proxy http://php:80 {
         header_up Host javanile-todaynotes.herokuapp.com
         header_up X-Real-IP {remote}
@@ -13,4 +13,7 @@ localhost {
         header_up X-Forwarded-Proto {scheme}
         header_up X-Forwarded-Host {host}
     }
+
+    respond /b/* "PATH: {path}"
+
 }
